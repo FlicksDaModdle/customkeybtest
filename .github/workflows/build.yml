@@ -45,7 +45,7 @@ jobs:
       - name: Package into .ipa
         run: |
           set -e
-          APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/MyKeyboardApp.app"
+          APP_PATH="build/DerivedData/Build/Products/Release-iphoneos/MyKeyboard.app"
 
           if [ ! -d "$APP_PATH" ]; then
             echo "Could not find built .app at $APP_PATH"
