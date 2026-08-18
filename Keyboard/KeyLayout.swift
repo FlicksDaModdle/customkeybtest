@@ -19,6 +19,10 @@ struct KeyModel: Identifiable, Equatable {
     /// Relative width weight versus a standard letter key (1.0 = standard).
     var widthWeight: Double = 1.0
 
+    static func == (lhs: KeyModel, rhs: KeyModel) -> Bool {
+        lhs.id == rhs.id
+    }
+
     init(_ char: String, widthWeight: Double = 1.0) {
         self.action = .character(char)
         self.displayLetters = (char, char.uppercased())
