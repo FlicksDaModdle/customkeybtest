@@ -29,23 +29,3 @@ targets:
         PRODUCT_NAME: MyKeyboard
         PROVISIONING_PROFILE_SPECIFIER: $(APP_PROVISIONING_PROFILE_SPECIFIER)
         CODE_SIGN_IDENTITY: "iPhone Distribution"
-    dependencies:
-      - target: MyKeyboardExtension
-        embed: true
-
-  MyKeyboardExtension:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: Keyboard
-      - path: Shared
-    info:
-      path: Keyboard/Info.plist
-    entitlements:
-      path: Keyboard/Keyboard.entitlements
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourname.mykeyboard.keyboard
-        PRODUCT_NAME: MyKeyboardExtension
-        PROVISIONING_PROFILE_SPECIFIER: $(EXT_PROVISIONING_PROFILE_SPECIFIER)
-        CODE_SIGN_IDENTITY: "iPhone Distribution"
