@@ -1,0 +1,51 @@
+name: MyKeyboard
+options:
+  bundleIdPrefix: com.yourname.mykeyboard
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: 5.0
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
+
+targets:
+  MyKeyboardApp:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Shared
+    info:
+      path: App/Info.plist
+    entitlements:
+      path: App/MyKeyboard.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourname.mykeyboard
+        PRODUCT_NAME: MyKeyboard
+        PROVISIONING_PROFILE_SPECIFIER: $(APP_PROVISIONING_PROFILE_SPECIFIER)
+        CODE_SIGN_IDENTITY: "iPhone Distribution"
+    dependencies:
+      - target: MyKeyboardExtension
+        embed: true
+
+  MyKeyboardExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Keyboard
+      - path: Shared
+    info:
+      path: Keyboard/Info.plist
+    entitlements:
+      path: Keyboard/Keyboard.entitlements
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourname.mykeyboard.keyboard
+        PRODUCT_NAME: MyKeyboardExtension
+        PROVISIONING_PROFILE_SPECIFIER: $(EXT_PROVISIONING_PROFILE_SPECIFIER)
+        CODE_SIGN_IDENTITY: "iPhone Distribution"
